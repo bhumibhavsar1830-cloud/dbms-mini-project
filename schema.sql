@@ -1,6 +1,4 @@
 
-CREATE DATABASE IF NOT EXISTS student_mgmt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE student_mgmt;
 CREATE TABLE IF NOT EXISTS subjects (
     subject_id   INT AUTO_INCREMENT PRIMARY KEY,
     subject_code VARCHAR(20)  NOT NULL UNIQUE,
