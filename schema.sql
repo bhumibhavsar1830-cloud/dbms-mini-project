@@ -1,15 +1,6 @@
--- ============================================================
--- SAGMS — Advanced Schema (Railway / XAMPP compatible)
--- SPPU AIDS Group G3 | 2nd Year DBMS Mini Project
--- ============================================================
 
 CREATE DATABASE IF NOT EXISTS student_mgmt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE student_mgmt;
-
--- ============================================================
--- TABLES
--- ============================================================
-
 CREATE TABLE IF NOT EXISTS subjects (
     subject_id   INT AUTO_INCREMENT PRIMARY KEY,
     subject_code VARCHAR(20)  NOT NULL UNIQUE,
@@ -76,11 +67,6 @@ CREATE TABLE IF NOT EXISTS audit_log (
     INDEX idx_action (action),
     INDEX idx_table  (table_name)
 ) ENGINE=InnoDB;
-
--- ============================================================
--- VIEWS
--- ============================================================
-
 CREATE OR REPLACE VIEW attendance_summary AS
 SELECT
     s.student_id,
@@ -143,11 +129,6 @@ FROM students s
 JOIN grades  g   ON s.student_id = g.student_id
 JOIN subjects sub ON g.subject_id = sub.subject_id
 GROUP BY s.student_id, sub.subject_id;
-
--- ============================================================
--- STORED PROCEDURES
--- ============================================================
-
 DROP PROCEDURE IF EXISTS GetAttendanceReport;
 DELIMITER $$
 CREATE PROCEDURE GetAttendanceReport(IN p_student_id INT)
